@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "363238450440",
+    "project_id": "tokio-app-772d0",
+    "storage_bucket": "tokio-app-772d0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363238450440:android:7f58628baa7a627249b8bd",
+        "android_client_info": {
+          "package_name": "br.com.mobisync.tokio_teste"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9xFwpR4bV9YL9WHroczy_p7RXAu7YbfM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
