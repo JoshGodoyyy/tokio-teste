@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "363238450440",
+    "firebase_url": "https://tokio-app-772d0-default-rtdb.firebaseio.com",
     "project_id": "tokio-app-772d0",
     "storage_bucket": "tokio-app-772d0.firebasestorage.app"
   },

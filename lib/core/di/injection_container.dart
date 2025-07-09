@@ -3,8 +3,9 @@ import 'package:tokio_teste/features/authentication/data/datasourse/authenticati
 import 'package:tokio_teste/features/authentication/data/repositories/authentication_repository_impl.dart';
 import 'package:tokio_teste/features/authentication/domain/repositories/authentication_repository.dart';
 import 'package:tokio_teste/features/authentication/domain/usecases/login.dart';
+import 'package:tokio_teste/features/authentication/domain/usecases/register.dart';
 import 'package:tokio_teste/features/authentication/domain/usecases/validate_cpf.dart';
-import 'package:tokio_teste/features/authentication/presentation/bloc/login_bloc.dart';
+import 'package:tokio_teste/features/authentication/presentation/bloc/login/login_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 final sl = GetIt.instance;
@@ -13,25 +14,37 @@ Future<void> init() async {
   sl.registerFactory(
     () => LoginBloc(
       loginUseCase: sl(),
+      registerUseCase: sl(),
     ),
   );
 
   sl.registerLazySingleton(() => ValidateCpf());
+
   sl.registerLazySingleton(
     () => Login(
       sl(),
       sl(),
     ),
   );
+
+  sl.registerLazySingleton(
+    () => Register(
+      sl(),
+      sl(),
+    ),
+  );
+
   sl.registerLazySingleton<AuthenticationRepository>(
     () => AuthenticationRepositoryImpl(
       remoteDataSource: sl(),
     ),
   );
+
   sl.registerLazySingleton<AuthenticationRemoteDataSource>(
     () => AuthenticationRemoteDataSourceImpl(
       firebaseAuth: sl(),
     ),
   );
+
   sl.registerLazySingleton(() => FirebaseAuth.instance);
 }

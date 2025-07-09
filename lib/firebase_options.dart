@@ -55,6 +55,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '363238450440',
     projectId: 'tokio-app-772d0',
     authDomain: 'tokio-app-772d0.firebaseapp.com',
+    databaseURL: 'https://tokio-app-772d0-default-rtdb.firebaseio.com',
     storageBucket: 'tokio-app-772d0.firebasestorage.app',
     measurementId: 'G-Y2DK615680',
   );
@@ -64,6 +65,8 @@ class DefaultFirebaseOptions {
     appId: '1:363238450440:android:7f58628baa7a627249b8bd',
     messagingSenderId: '363238450440',
     projectId: 'tokio-app-772d0',
+    databaseURL: 'https://tokio-app-772d0-default-rtdb.firebaseio.com',
     storageBucket: 'tokio-app-772d0.firebasestorage.app',
   );
+
 }

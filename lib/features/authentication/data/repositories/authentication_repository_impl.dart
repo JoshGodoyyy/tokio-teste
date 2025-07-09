@@ -22,4 +22,18 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       return Left(ServerFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, User>> register(
+    String name,
+    String cpf,
+    String password,
+  ) async {
+    try {
+      final userModel = await remoteDataSource.register(name, cpf, password);
+      return Right(userModel);
+    } catch (ex) {
+      return Left(ServerFailure());
+    }
+  }
 }
