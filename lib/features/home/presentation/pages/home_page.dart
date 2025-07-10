@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -6,6 +7,7 @@ import 'package:tokio_teste/features/authentication/presentation/bloc/login/logi
 import 'package:tokio_teste/features/authentication/presentation/bloc/login/login_state.dart';
 import 'package:tokio_teste/features/automovel_webview/automovel_webview.dart';
 import 'package:tokio_teste/features/home/presentation/widgets/title_section.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../widgets/icon_button_cotacao.dart';
 import '../widgets/user_info.dart';
@@ -18,6 +20,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  static const String _url = 'https://www.flutter.dev';
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
@@ -252,13 +256,36 @@ class _HomePageState extends State<HomePage> {
                             IconButtonCotacao(
                               icon: FontAwesomeIcons.carSide,
                               label: 'Automóvel',
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => AutomovelWebview(),
-                                  ),
-                                );
+                              onTap: () async {
+                                if (kIsWeb) {
+                                  if (!await launchUrl(
+                                    Uri.parse(_url),
+                                    mode: LaunchMode.externalApplication,
+                                  )) {
+                                    WidgetsBinding.instance.addPostFrameCallback(
+                                      (timeStamp) {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Não foi possível abrir a URL: $_url',
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  }
+                                } else {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => AutomovelWebview(
+                                        url: _url,
+                                      ),
+                                    ),
+                                  );
+                                }
                               },
                             ),
                             const SizedBox(width: 8),
