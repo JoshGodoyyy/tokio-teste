@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tokio_teste/core/themes/app_colors.dart';
 import 'package:tokio_teste/features/authentication/presentation/bloc/login/login_bloc.dart';
 import 'package:tokio_teste/features/authentication/presentation/bloc/login/login_state.dart';
-import 'package:tokio_teste/features/home/domain/cotacao_item.dart';
+import 'package:tokio_teste/features/automovel_webview/automovel_webview.dart';
 import 'package:tokio_teste/features/home/presentation/widgets/title_section.dart';
 
 import '../widgets/icon_button_cotacao.dart';
@@ -18,15 +18,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<CotacaoItem> _items = [
-    CotacaoItem(icon: FontAwesomeIcons.carSide, name: 'Automóvel'),
-    CotacaoItem(icon: FontAwesomeIcons.house, name: 'Residência'),
-    CotacaoItem(icon: FontAwesomeIcons.heart, name: 'Vida'),
-    CotacaoItem(icon: FontAwesomeIcons.crutch, name: 'Acidentes Pessoais'),
-  ];
-
-  String? username;
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
@@ -255,15 +246,37 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(height: 12),
                       SizedBox(
                         height: 100,
-                        child: ListView.separated(
+                        child: ListView(
                           scrollDirection: Axis.horizontal,
-                          itemCount: _items.length,
-                          itemBuilder: (context, index) => IconButtonCotacao(
-                            icon: _items[index].icon,
-                            label: _items[index].name,
-                          ),
-                          separatorBuilder: (context, index) =>
-                              const SizedBox(width: 8),
+                          children: [
+                            IconButtonCotacao(
+                              icon: FontAwesomeIcons.carSide,
+                              label: 'Automóvel',
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => AutomovelWebview(),
+                                  ),
+                                );
+                              },
+                            ),
+                            const SizedBox(width: 8),
+                            IconButtonCotacao(
+                              icon: FontAwesomeIcons.house,
+                              label: 'Residência',
+                            ),
+                            const SizedBox(width: 8),
+                            IconButtonCotacao(
+                              icon: FontAwesomeIcons.heart,
+                              label: 'Vida',
+                            ),
+                            const SizedBox(width: 8),
+                            IconButtonCotacao(
+                              icon: FontAwesomeIcons.crutch,
+                              label: 'Acidentes Pessoais',
+                            ),
+                          ],
                         ),
                       ),
                       const SizedBox(height: 12),

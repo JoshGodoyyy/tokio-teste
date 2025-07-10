@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/custom_text_field.dart';
 
-class LoginContent extends StatelessWidget {
+class LoginContent extends StatefulWidget {
   final TextEditingController cpfController;
   final TextEditingController passwordController;
 
@@ -13,17 +13,24 @@ class LoginContent extends StatelessWidget {
   });
 
   @override
+  State<LoginContent> createState() => _LoginContentState();
+}
+
+class _LoginContentState extends State<LoginContent> {
+  bool lembrarSempre = false;
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CustomTextField(
-          controller: cpfController,
+          controller: widget.cpfController,
           label: 'CPF',
           keyboardType: TextInputType.numberWithOptions(),
         ),
         const SizedBox(height: 18),
         CustomTextField(
-          controller: passwordController,
+          controller: widget.passwordController,
           label: 'Senha',
           obscure: true,
         ),
@@ -34,8 +41,9 @@ class LoginContent extends StatelessWidget {
               child: Row(
                 children: [
                   Checkbox(
-                    value: false,
-                    onChanged: (value) {},
+                    value: lembrarSempre,
+                    onChanged: (value) =>
+                        setState(() => lembrarSempre = value!),
                   ),
                   Text('Lembrar Sempre'),
                 ],

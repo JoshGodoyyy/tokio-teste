@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:tokio_teste/core/themes/app_colors.dart';
 
 class IconButtonCotacao extends StatelessWidget {
+  final Function? onTap;
   final IconData icon;
   final String label;
   const IconButtonCotacao({
     super.key,
+    this.onTap,
     required this.icon,
     required this.label,
   });
@@ -19,7 +21,9 @@ class IconButtonCotacao extends StatelessWidget {
       child: SizedBox(
         width: 120,
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            if (onTap != null) onTap!();
+          },
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           child: Padding(
             padding: const EdgeInsets.all(24),

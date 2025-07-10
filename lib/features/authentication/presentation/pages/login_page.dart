@@ -209,7 +209,10 @@ class _LoginPageState extends State<LoginPage> {
                                               shape: BoxShape.circle,
                                             ),
                                             padding: const EdgeInsets.all(16),
-                                            child: CircularProgressIndicator(),
+                                            child: Center(
+                                              child:
+                                                  CircularProgressIndicator(),
+                                            ),
                                           ),
                                         ),
                                       );
@@ -218,7 +221,7 @@ class _LoginPageState extends State<LoginPage> {
                                       bottom: -40,
                                       right: 0,
                                       left: 0,
-                                      child: InkWell(
+                                      child: GestureDetector(
                                         onTap: () {
                                           if (_screenIndex == 0) {
                                             context.read<LoginBloc>().add(
